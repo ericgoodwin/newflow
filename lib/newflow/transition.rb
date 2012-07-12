@@ -7,7 +7,7 @@ module Newflow
       if_meth      = opts[:if]
       unless_meth  = opts[:unless]
       @trigger      = Trigger.new(opts[:trigger])
-      logger.debug "State.transitions_to: target_state=#{target_state} if=#{if_meth.inspect} unless=#{unless_meth.inspect} trigger=#{@trigger}"
+      # logger.debug "State.transitions_to: target_state=#{target_state} if=#{if_meth.inspect} unless=#{unless_meth.inspect} trigger=#{@trigger}"
       unless @target_state \
           &&  (if_meth || unless_meth) \
           && !(if_meth && unless_meth) 

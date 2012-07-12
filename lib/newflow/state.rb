@@ -3,7 +3,7 @@ module Newflow
     attr_reader :name, :transitions
 
     def initialize(name, opts={}, &transitions_block)
-      logger.debug "State.initialize: name=#{name} opts=#{opts.inspect}"
+      # logger.debug "State.initialize: name=#{name} opts=#{opts.inspect}"
       @name     = name
       @opts     = opts
       @is_start = opts[:start]
