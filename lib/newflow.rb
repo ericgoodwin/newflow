@@ -37,6 +37,7 @@ module Newflow
     def after_initialize_with_workflow
       after_initialize_without_workflow if respond_to?(:after_initialize_without_workflow)
       workflow # This will set the workflow_state
+      workflow.states[workflow.current_state].run_on_entry(self, true)
     end
     if respond_to?(:after_initialize)
       alias_method :after_initialize_without_workflow, :after_initialize
@@ -48,6 +49,7 @@ module Newflow
     def initialize_with_workflow(*args, &block)
       initialize_without_workflow(*args, &block)
       workflow # This will set the workflow_state
+      workflow.states[workflow.current_state].run_on_entry(self, true)
     end
     alias_method :initialize_without_workflow, :initialize
     alias_method :initialize, :initialize_with_workflow
