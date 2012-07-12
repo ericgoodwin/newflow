@@ -24,14 +24,10 @@ module Newflow
     def construct_workflow!(definition)
       instance_eval &definition
       start_state = states.values.detect { |s| s.start? }
-      if start_state
-        @extendee.workflow_state ||= start_state.name.to_s 
-        start_state.run_on_entry(@extendee, do_trigger)
-      end
+      @extendee.workflow_state ||= start_state.name.to_s if start_state
       validate_workflow!
       define_state_query_methods
       raise InvalidWorkflowStateError.new(current_state) unless states[current_state]
-
     end
 
     def define_state_query_methods
